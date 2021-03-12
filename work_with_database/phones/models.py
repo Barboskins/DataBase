@@ -12,7 +12,8 @@ class Phone(models.Model):
     slug = models.SlugField(max_length=40,allow_unicode=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        if not self.slug:
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def __str__(self):

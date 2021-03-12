@@ -12,9 +12,7 @@ class Command(BaseCommand):
         with open('phones.csv', 'r') as csvfile:
             phone_reader = csv.DictReader(csvfile, delimiter=';')
 
-            # phone_reader = csv.reader(csvfile, delimiter=';')
-            # # пропускаем заголовок
-            # next(phone_reader)
+
 
             for line in phone_reader:
                 Phone.objects.create(
@@ -24,7 +22,7 @@ class Command(BaseCommand):
                     image=line.get('image'),
                     release_date=line.get('release_date'),
                     lte_exists=line.get('lte_exists'),
-                    slug=line.get('name')
+                    slug=line.get('slug')
                 )
                 # # TODO: Добавьте сохранение модели
                 # pass
